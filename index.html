@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=210mm, initial-scale=1.0">
+    <title>KWEIDER - Exclusive Artisanal Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        /* ================= 1. GLOBAL STYLES (SCREEN) ================= */
+        :root { 
+            --copper-gold: #c49a3a; 
+            --dark-bg: #111111; 
+            --card-bg: #1a1a1a; 
+            --pure-white: #ffffff; 
+            --muted-gray: #aaaaaa;
+        }
+        
+        *, *::before, *::after { box-sizing: border-box !important; }
+        
+        body { 
+            margin: 0; 
+            padding: 40px 0; 
+            font-family: 'Cairo', sans-serif; 
+            background-color: #333; 
+            color: var(--pure-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .page-container {
+            width: 210mm; 
+            height: 297mm; 
+            background-color: var(--dark-bg);
+            margin: 0 auto; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            overflow: hidden; 
+            border: 1px solid #333;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* ================= 2. COVER PAGE ================= */
+        .cover-page { 
+            display: flex; 
+            flex-direction: column;
+            height: 100%; 
+            text-align: center;
+            padding: 25mm 20mm 0 20mm; 
+            position: relative;
+        }
+
+        .cover-logo-container {
+            height: 55mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10mm;
+            flex-shrink: 0;
+        }
+
+        .cover-logo { 
+            max-width: 260px; 
+            height: auto;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
+        }
+
+        .hero-text-block {
+            height: auto; 
+            min-height: 40mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            padding: 0 20px;
+        }
+
+        .hero-title { 
+            font-size: 26pt; 
+            font-weight: 700; 
+            margin: 0; 
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .hero-subtitle { 
+            font-size: 12pt; 
+            margin-top: 20px; 
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--copper-gold);
+            text-align: center;
+        }
+
+        .building-anchor {
+            position: absolute;
+            bottom: 20mm; 
+            left: 0;
+            width: 100%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .building-image {
+            width: 85%; 
+            height: auto;
+            max-height: 250px; 
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.4));
+        }
+
+        /* ================= 3. INTERNAL PRODUCTS PAGE ================= */
+        .page-inner { 
+            padding: 8mm 15mm 8mm 15mm; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .header-area { 
+            text-align: center; 
+            margin-bottom: 12px; 
+            flex-shrink: 0; 
+        }
+        
+        .tiny-header-logo { 
+            height: 55px; 
+            object-fit: contain; 
+            margin-bottom: 5px; 
+            display: inline-block; 
+        }
+        
+        .category-header { 
+            color: var(--copper-gold); 
+            font-size: 20pt; 
+            text-align: center; 
+            margin: 0; 
+            font-weight: 700; 
+        }
+
+        .tiled-content { 
+            display: grid; 
+            grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            grid-template-rows: repeat(3, minmax(0, calc((100% - 30px) / 3))); 
+            gap: 15px 20px; 
+            flex-grow: 1; 
+            min-height: 0; 
+        }
+        
+        .product-tile { 
+            background: var(--card-bg); 
+            border: 1px solid #2a2a2a; 
+            border-radius: 10px; 
+            padding: 12px 15px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+            cursor: pointer; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .product-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(196, 154, 58, 0.2);
+            border-color: var(--copper-gold);
+        }
+
+        .img-cont { 
+            height: 90px; 
+            margin-top: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0;
+            pointer-events: none; 
+        }
+        
+        .img-cont img { 
+            max-height: 100%; 
+            max-width: 100%; 
+            object-fit: contain; 
+            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.3)); 
+        }
+        
+        .info-cont {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            margin-top: auto; 
+            margin-bottom: auto; 
+            width: 100%;
+            pointer-events: none;
+        }
+
+        h3 { 
+            font-size: 13.5pt; 
+            font-weight: 700;
+            margin: 0; 
+            color: white; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            width: 100%; 
+        }
+
+        .meta-horizontal { 
+            font-family: Arial, sans-serif; 
+            font-size: 12pt; 
+            color: var(--muted-gray); 
+            border-top: 1px solid #333; 
+            padding-top: 8px; 
+            width: 100%; 
+            margin-top: auto; 
+            text-align: center; 
+            line-height: 1.3;
+            pointer-events: none;
+        }
+        
+        .meta-line {
+            display: block;
+            white-space: normal; 
+            overflow: visible;
+            text-overflow: clip;
+            width: 100%;
+        }
+        
+        .meta-horizontal strong { 
+            color: var(--copper-gold); 
+            font-weight: normal; 
+            text-transform: uppercase; 
+        }
+
+        /* ================= 4. PREMIUM PACKAGING GRID ================= */
+        .packaging-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+            flex-grow: 1;
+            min-height: 0; /* هذا السطر يمنع الشبكة من تجاوز حجم الصفحة */
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .packaging-tile {
+            background: radial-gradient(circle at center, #2a2a2a 0%, var(--dark-bg) 100%);
+            border: 1px solid #333;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            min-height: 0; /* هذا يمنع الخلية من التمدد خارج الصف */
+            height: 100%;
+            width: 100%;
+        }
+
+        .packaging-tile:hover {
+            border-color: var(--copper-gold);
+            box-shadow: 0 0 20px rgba(196, 154, 58, 0.15);
+        }
+
+        .packaging-tile img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.6));
+        }
+
+        .packaging-tile:hover img {
+            transform: scale(1.1);
+        }
+
+        /* ================= 5. FOOTER ================= */
+        .footer { 
+            border-top: 1px solid #333; 
+            padding-top: 8px; 
+            margin-top: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 11pt; 
+            color: #888; 
+            line-height: 1.4; 
+            flex-shrink: 0; 
+        }
+        
+        .footer-address { text-align: left; }
+        .footer-contact { text-align: right; }
+        .footer strong { color: var(--pure-white); font-size: 11pt;}
+
+        /* ================= 6. MODAL (POPUP) STYLES ================= */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(17, 17, 17, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--copper-gold);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28pt;
+            color: var(--muted-gray);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--copper-gold);
+        }
+
+        .modal-img {
+            max-width: 100%;
+            height: 250px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5));
+            transition: max-height 0.3s ease;
+        }
+
+        .modal-title {
+            font-size: 20pt;
+            color: var(--copper-gold);
+            margin-bottom: 20px;
+        }
+
+        .modal-meta {
+            font-size: 13pt;
+            color: var(--muted-gray);
+            line-height: 1.6;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+
+        .modal-meta strong {
+            color: var(--copper-gold);
+        }
+
+        /* ================= 7. CRITICAL PRINT ENGINE STYLES ================= */
+        @media print {
+            html { background-color: var(--dark-bg) !important; }
+            body { 
+                display: block !important; 
+                width: 210mm !important; 
+                height: auto !important; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                background-color: var(--dark-bg) !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                overflow: visible !important; 
+            }
+            .page-container { 
+                border: none !important; 
+                box-shadow: none !important; 
+                margin: 0 auto !important; 
+                width: 210mm !important; 
+                height: 297mm !important; 
+                display: flex !important; 
+                flex-direction: column !important;
+                page-break-after: always !important; 
+                page-break-before: always !important;
+                page-break-inside: avoid !important; 
+                overflow: hidden !important;
+            }
+            img[src="kw2026.png"] {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            .modal-overlay, #productModal {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1: COVER ================= -->
+    <div class="page-container">
+        <div class="cover-page">
+            <div class="cover-logo-container">
+                <img src="imageslogo.png" alt="Kweider Logo" class="cover-logo">
+            </div>
+            <div class="hero-text-block">
+            <h1 class="hero-title" style="color: #c49a3a;">A Legacy of Damascene Luxury</h1>
+            <div class="hero-subtitle">
+                Since 1969, Kweider has been the custodian of authentic Damascene artisanship. From the heart of Syria to London, we have spent decades perfecting the art of fine Arabic sweets, blending time-honored traditions with uncompromising premium quality.<br><br>
+                We are delighted to present this exclusive portfolio, thoughtfully curated to showcase our signature collections and luxurious packaging. This document is designed to give you a glimpse into our world of elegance and exceptional taste, setting the stage for what we can achieve together.
+            </div>
+        </div>
+        <div class="building-anchor">
+                <img src="kw2026.png" class="building-image" alt="Kweider Heritage Building">
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Premium Pistachio Collection</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio_mabrouma..webp" alt="Pistachio Knafeh Mabrouma"></div>
+                    <div class="info-cont"><h3>Pistachio Knafeh Mabrouma</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio_white_knafeh.webp" alt="Pistachio White Knafeh"></div>
+                    <div class="info-cont"><h3>Pistachio White Knafeh</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio_boukaj.webp" alt="Pistachio Boukaj"></div>
+                    <div class="info-cont"><h3>Pistachio Boukaj</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Pistachio Roasted Knafeh.webp" alt="Pistachio Roasted Knafeh"></div>
+                    <div class="info-cont"><h3>Pistachio Roasted Knafeh</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Assyea.webp" alt="Pistachio Assyea"></div>
+                    <div class="info-cont"><h3>Pistachio Assyea</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Pistachio Kol W Shkor.webp" alt="Pistachio Kol W Shkor"></div>
+                    <div class="info-cont"><h3>Pistachio Kol W Shkor</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ================= PAGE 3 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Premium Pistachio Collection.</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="asabe.webp" alt="Pistachio Baklava Asabe"></div>
+                    <div class="info-cont"><h3>Pistachio Baklava Asabe</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="asawer.webp" alt="Pistachio Asawer"></div>
+                    <div class="info-cont"><h3>Pistachio Asawer</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="baklava.webp" alt="Pistachio Baklava"></div>
+                    <div class="info-cont"><h3>Pistachio Baklava</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Pistachio Osh El Bulbul.webp" alt="Pistachio Osh El Bulbul"></div>
+                    <div class="info-cont"><h3>Pistachio Osh El Bulbul</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Honey Baklava.webp" alt="Premium Honey Baklava"></div>
+                    <div class="info-cont"><h3>Premium Honey Baklava</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Sugar-Free Baklava.webp" alt="Premium Sugar-Free Baklava"></div>
+                    <div class="info-cont"><h3>Premium Sugar-Free Baklava</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 4 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Premium Cashew Collection</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Cashew Mabrouma.webp" alt="Cashew Mabrouma"></div>
+                    <div class="info-cont"><h3>Cashew Mabrouma</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Premium Cashew Mabrouma.webp" alt="Cashew Roasted Knafeh"></div>
+                    <div class="info-cont"><h3>Cashew Roasted Knafeh</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Cashew Kol W Shkor.webp" alt="Cashew Osh El Bulbul"></div>
+                    <div class="info-cont"><h3>Cashew Osh El Bulbul</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Walnut Baklava.webp" alt="Walnut Baklava"></div>
+                    <div class="info-cont"><h3>Walnut Baklava</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Asabe .webp" alt="Cashew Asabe Baklava"></div>
+                    <div class="info-cont"><h3>Cashew Asabe Baklava</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Cashew_boukaj.webp" alt="Cashew Boukaj"></div>
+                    <div class="info-cont"><h3>Cashew Boukaj</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 5 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Premium Assorted Boxes</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="bakalwa1kg.png" alt="Pistachio Baklawa Box"></div>
+                    <div class="info-cont"><h3>Pistachio Baklawa Box</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="bakalwa1250 g.jpeg" alt="Pistachio Osh El Bulbul Box"></div>
+                    <div class="info-cont"><h3>Pistachio Osh El Bulbul Box</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1.250 kg Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="bakalwa500g.png" alt="Cashew Baklawa Box"></div>
+                    <div class="info-cont"><h3>Cashew Baklawa Box</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 450 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="bakalwa300g.png" alt="Walnut Baklawa Box"></div>
+                    <div class="info-cont"><h3>Walnut Baklawa Box</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 250 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="bakalwa100g.png" alt="Almond Mabrouma Box"></div>
+                    <div class="info-cont"><h3>Almond Mabrouma Box</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 90 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 6 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Authentic Kunafa & Spreads</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="chocolate-spread.webp" alt="Chocolate Knafeh Spread"></div>
+                    <div class="info-cont"><h3>Chocolate Knafeh Spread</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="biscoff-spread.webp" alt="Biscoff Knafeh Spread"></div>
+                    <div class="info-cont"><h3>Biscoff Knafeh Spread</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio-spread.webp" alt="Pistachio Knafeh Spread"></div>
+                    <div class="info-cont"><h3>Pistachio Knafeh Spread</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm.</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="nabulsih.webp" alt="Nabulsih Cheese Kunafa"></div>
+                    <div class="info-cont"><h3>Nabulsih Cheese Kunafa</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep frozen for up to 10 days. Serve hot.</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="khashna-cheese.webp" alt="Khashna Cheese Kunafa"></div>
+                    <div class="info-cont"><h3>Khashna Cheese Kunafa</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep frozen for up to 10 days. Serve hot.</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="umm-al-narayn.webp" alt="Cream Kunafa"></div>
+                    <div class="info-cont"><h3>Cream Kunafa</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep frozen for up to 10 days. Serve hot.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 7 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Heritage Sweets & Pastries</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Mixed Nuts Crowned Medjool.webp" alt="Mixed Nuts Dates"></div>
+                    <div class="info-cont"><h3>Mixed Nuts Dates</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm </span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Almond Semolina.webp" alt="Almond Harisa"></div>
+                    <div class="info-cont"><h3>Almond Harisa</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio_harisa.png" alt="Pistachio Harisa"></div>
+                    <div class="info-cont"><h3>Pistachio Harisa</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm </span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="warbat-pistachio.webp" alt="Pistachio Faisalia"></div>
+                    <div class="info-cont"><h3>warbat-pistachio</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 7 days. Serve warm</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="warbat.webp" alt="Cream Warbat"></div>
+                    <div class="info-cont"><h3>Cream Warbat</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 2 days. Serve warm</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="ghraybeh.webp" alt="Cream Ghraybeh"></div>
+                    <div class="info-cont"><h3>Cream Ghraybeh</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 piece &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> Keep refrigerated for up to 5 days. Serve warm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 8 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Classic Maamoul & Cookies</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="braz.png" alt="Extra Sesame Barazek"></div>
+                    <div class="info-cont"><h3>Extra Sesame Barazek</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Pistachio Shortbread ('Ghraybeh).png" alt="Pistachio Ghraybeh"></div>
+                    <div class="info-cont"><h3>Pistachio Ghraybeh</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 500 g &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Date Maamoul Extra Pistachio.png" alt="Extra Date Maamoul"></div>
+                    <div class="info-cont"><h3>Extra Date Maamoul</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="pistachio_maamoul.webp" alt="Extra Pistachio Maamoul"></div>
+                    <div class="info-cont"><h3>Extra Pistachio Maamoul</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="walnut_maamoul.png" alt="Extra Walnut Maamoul"></div>
+                    <div class="info-cont"><h3>Extra Walnut Maamoul</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Premium Extra Barazek  Ghraiba  Date Maamoul.png" alt="Mixed Maamoul & Barazek"></div>
+                    <div class="info-cont"><h3>Mixed Maamoul & Barazek</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 9 ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Coffee & Damascene Delights</h2>
+            </div>
+            <div class="tiled-content">
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Product photo 7.png" alt="Damascene Glacé Fruit"></div>
+                    <div class="info-cont"><h3>Damascene Glacé Fruit</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="Product photo.png" alt="Pistachio Syrian Nougat"></div>
+                    <div class="info-cont"><h3>Pistachio Syrian Nougat</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="roasted_nuts.webp" alt="Roasted Mixed Nuts"></div>
+                    <div class="info-cont"><h3>Roasted Mixed Nuts</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="arabic_coffee.png" alt="Special Arabic Coffee"></div>
+                    <div class="info-cont"><h3>Kweider Arabic Coffee</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="blonde_coffee.webp" alt="Blonde Arabic Coffee"></div>
+                    <div class="info-cont"><h3>Blonde Arabic Coffee</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+                <div class="product-tile" onclick="openModal(this)">
+                    <div class="img-cont"><img src="espresso.webp" alt="Special Turkish Coffee"></div>
+                    <div class="info-cont"><h3>espresso</h3></div>
+                    <div class="meta-horizontal">
+                        <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
+                        <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 10: PREMIUM PACKAGING ================= -->
+    <div class="page-container">
+        <div class="page-inner">
+            <div class="header-area" style="margin-bottom: 20px;">
+                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Premium Packaging Excellence</h2>
+                <p style="color: var(--muted-gray); font-size: 11pt; margin-top: 5px;">A glimpse into our luxurious and meticulously crafted emballage designed to preserve quality and elevate the brand.</p>
+            </div>
+            <div class="packaging-grid">
+                <!-- 12 Packaging Images -->
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_1.webp" alt="Packaging Box 1"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_2.webp" alt="Packaging Box 2"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_3.webp" alt="Packaging Box 3"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_4.webp" alt="Packaging Box 4"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_5.webp" alt="Packaging Box 5"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_6.webp" alt="Packaging Box 6"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_7.webp" alt="Packaging Box 7"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_8.webp" alt="Packaging Box 8"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_9.webp" alt="Packaging Box 9"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_10.webp" alt="Packaging Box 10"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_11.webp" alt="Packaging Box 11"></div>
+                <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_12.webp" alt="Packaging Box 12"></div>
+            </div>
+            <div class="footer" style="margin-top: auto;">
+                <div class="footer-address"><strong>Kweider Sweets</strong><br>184-186 High Street, Acton, London, W3 9NH</div>
+                <div class="footer-contact">info@kweidersweets.co.uk | 0044 7 440 444 500<br>www.kweidersweets.co.uk</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 11: CLOSING PAGE ================= -->
+    <div class="page-container">
+        <div class="cover-page" style="justify-content: center; display: flex; flex-direction: column;">
+            <div class="cover-logo-container">
+                <img src="imageslogo.png" alt="Kweider Logo" class="cover-logo">
+            </div>
+            <div class="hero-text-block" style="flex-grow: 1;">
+            <h1 class="hero-title" style="color: #c49a3a;">Partner With Excellence</h1>
+            <div class="hero-subtitle" style="font-size: 13pt; max-width: 85%; margin: 25px auto; text-align: center; color: var(--pure-white);">
+                We view our B2B relationships not merely as transactions, but as strategic partnerships. By choosing Kweider, you are selecting a brand that understands the nuanced demands of luxury hospitality and high-end retail.<br><br>
+                Our exquisitely packaged, artisanal creations are designed to seamlessly complement your high standards and elevate the memorable moments you provide to your distinguished guests. We believe that true luxury lies in the details, from the first glance at our emballage to the final taste.<br><br>
+                <span style="color: var(--copper-gold); font-style: italic;">We look forward to the prospect of curating a bespoke offering tailored exactly to your exacting requirements and building a fruitful, lasting partnership.</span>
+            </div>
+        </div>
+        <div class="footer" style="width: 100%; border-top: none; justify-content: center; flex-direction: column; gap: 10px; margin-bottom: 20mm;">
+                <h3 style="color: var(--copper-gold); font-size: 16pt; margin: 0;">Contact Our Wholesale Team</h3>
+                <div style="font-size: 14pt; color: var(--pure-white);">info@kweidersweets.co.uk | 0044 7 440 444 500</div>
+                <div style="font-size: 12pt; color: var(--muted-gray);">184-186 High Street, Acton, London, W3 9NH</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة العرض المنبثقة (Modal) -->
+    <div id="productModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal(event)">&times;</span>
+            <img id="modalImg" src="" alt="" class="modal-img">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <div id="modalMeta" class="modal-meta"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(element) {
+            const imgSrc = element.querySelector('img').src;
+            const imgAlt = element.querySelector('img').alt;
+            
+            // التفريق بين صفحة المنتجات وصفحة التغليف
+            const isPackaging = element.classList.contains('packaging-tile');
+            
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalImg').alt = imgAlt;
+
+            if (isPackaging) {
+                // إذا كان المربع لعلبة تغليف، نخفي النصوص ونكبر الصورة فقط
+                document.getElementById('modalTitle').style.display = 'none';
+                document.getElementById('modalMeta').style.display = 'none';
+                document.getElementById('modalImg').style.maxHeight = '70vh';
+            } else {
+                // إذا كان منتجاً، نظهر الاسم والمواصفات
+                const title = element.querySelector('h3').innerText;
+                const metaHTML = element.querySelector('.meta-horizontal').innerHTML;
+                
+                document.getElementById('modalTitle').innerText = title;
+                document.getElementById('modalMeta').innerHTML = metaHTML;
+                
+                document.getElementById('modalTitle').style.display = 'block';
+                document.getElementById('modalMeta').style.display = 'block';
+                document.getElementById('modalImg').style.maxHeight = '250px';
+            }
+
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+                document.getElementById('productModal').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
