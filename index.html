@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="robots" content="noindex, nofollow">
 
     <style>
@@ -244,16 +245,17 @@
             text-transform: uppercase; 
         }
 
-        /* ================= 4. PREMIUM PACKAGING GRID ================= */
+        /* ================= 4. PREMIUM PACKAGING GRID (UPDATED SIZES) ================= */
         .packaging-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             grid-template-rows: repeat(4, minmax(0, 1fr));
-            gap: 15px;
+            gap: 12px; /* تقليل الفراغ بين المربعات لإعطاء مساحة أكبر للعلب */
             flex-grow: 1;
             min-height: 0; /* هذا السطر يمنع الشبكة من تجاوز حجم الصفحة */
             width: 100%;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
+            margin-top: 15px;
         }
 
         .packaging-tile {
@@ -270,6 +272,7 @@
             min-height: 0; /* هذا يمنع الخلية من التمدد خارج الصف */
             height: 100%;
             width: 100%;
+            padding: 5px; /* تقليص الحشوة الداخلية جذرياً لتكبير الصورة */
         }
 
         .packaging-tile:hover {
@@ -278,18 +281,80 @@
         }
 
         .packaging-tile img {
-            max-width: 85%;
-            max-height: 85%;
+            max-width: 95%; /* تكبير الصورة داخل المربع لتصل للحد الأقصى */
+            max-height: 95%; /* تكبير الصورة داخل المربع */
             object-fit: contain;
             transition: transform 0.4s ease;
             filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.6));
         }
 
         .packaging-tile:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08); /* تأثير التكبير عند اللمس */
         }
 
-        /* ================= 5. FOOTER ================= */
+        /* ================= 5. INTERACTIVE LINKS (PAGE 11) ================= */
+        .links-container {
+            width: 85%;
+            max-width: 600px;
+            margin: 10px auto 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .link-btn-half, .link-btn-full {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #333;
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14pt;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .link-btn-full {
+            width: 100%;
+        }
+
+        .link-btn-half:hover, .link-btn-full:hover {
+            border-color: var(--copper-gold);
+            background: rgba(196, 154, 58, 0.1);
+            color: var(--copper-gold);
+            box-shadow: 0 5px 15px rgba(196, 154, 58, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .footer-info a {
+            color: var(--muted-gray);
+            text-decoration: none;
+            font-size: 12pt;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-info a:hover {
+            color: var(--copper-gold);
+        }
+
+        /* ================= 6. FOOTER ================= */
         .footer { 
             border-top: 1px solid #333; 
             padding-top: 8px; 
@@ -307,7 +372,7 @@
         .footer-contact { text-align: right; }
         .footer strong { color: var(--pure-white); font-size: 11pt;}
 
-        /* ================= 6. MODAL (POPUP) STYLES ================= */
+        /* ================= 7. MODAL (POPUP) STYLES ================= */
         .modal-overlay {
             display: none; 
             position: fixed;
@@ -387,7 +452,7 @@
             color: var(--copper-gold);
         }
 
-        /* ================= 7. CRITICAL PRINT ENGINE STYLES ================= */
+        /* ================= 8. CRITICAL PRINT ENGINE STYLES ================= */
         @media print {
             html { background-color: var(--dark-bg) !important; }
             body { 
@@ -414,7 +479,7 @@
                 page-break-inside: avoid !important; 
                 overflow: hidden !important;
             }
-            img[src="kw2026.png"] {
+            img {
                 display: block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
@@ -423,6 +488,13 @@
                 display: none !important;
                 opacity: 0 !important;
                 visibility: hidden !important;
+            }
+            
+            /* لضمان طباعة الأزرار التفاعلية بشكل جيد في ملف الـ PDF */
+            .link-btn-half, .link-btn-full {
+                background: #1a1a1a !important; 
+                border: 1px solid #333 !important;
+                color: #ffffff !important;
             }
         }
     </style>
@@ -433,17 +505,17 @@
     <div class="page-container">
         <div class="cover-page">
             <div class="cover-logo-container">
-                <img src="imageslogo.png" alt="Kweider Logo" class="cover-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="cover-logo">
             </div>
             <div class="hero-text-block">
-            <h1 class="hero-title" style="color: #c49a3a;">A Legacy of Damascene Luxury</h1>
-            <div class="hero-subtitle">
-                Since 1969, Kweider has been the custodian of authentic Damascene artisanship. From the heart of Syria to London, we have spent decades perfecting the art of fine Arabic sweets, blending time-honored traditions with uncompromising premium quality.<br><br>
-                We are delighted to present this exclusive portfolio, thoughtfully curated to showcase our signature collections and luxurious packaging. This document is designed to give you a glimpse into our world of elegance and exceptional taste, setting the stage for what we can achieve together.
+                <h1 class="hero-title" style="color: #c49a3a;">A Legacy of Damascene Luxury</h1>
+                <div class="hero-subtitle">
+                    Since 1969, Kweider has been the custodian of authentic Damascene artisanship. From the heart of Syria to London, we have spent decades perfecting the art of fine Arabic sweets, blending time-honored traditions with uncompromising premium quality.<br><br>
+                    We are delighted to present this exclusive portfolio, thoughtfully curated to showcase our signature collections and luxurious packaging. This document is designed to give you a glimpse into our world of elegance and exceptional taste, setting the stage for what we can achieve together.
+                </div>
             </div>
-        </div>
-        <div class="building-anchor">
-                <img src="kw2026.png" class="building-image" alt="Kweider Heritage Building">
+            <div class="building-anchor">
+                <img src="kw2026.webp" class="building-image" alt="Kweider Heritage Building">
             </div>
         </div>
     </div>
@@ -452,7 +524,7 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Premium Pistachio Collection</h2>
             </div>
             <div class="tiled-content">
@@ -516,7 +588,7 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Premium Pistachio Collection.</h2>
             </div>
             <div class="tiled-content">
@@ -580,7 +652,7 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Premium Cashew Collection</h2>
             </div>
             <div class="tiled-content">
@@ -644,45 +716,45 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Premium Assorted Boxes</h2>
             </div>
             <div class="tiled-content">
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="bakalwa1kg.png" alt="Pistachio Baklawa Box"></div>
-                    <div class="info-cont"><h3>Pistachio Baklawa Box</h3></div>
+                    <div class="img-cont"><img src="bakalwa1kg.webp" alt="Assorted Baklawa"></div>
+                    <div class="info-cont"><h3>Assorted Baklawa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
                         <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="bakalwa1250 g.jpeg" alt="Pistachio Osh El Bulbul Box"></div>
-                    <div class="info-cont"><h3>Pistachio Osh El Bulbul Box</h3></div>
+                    <div class="img-cont"><img src="bakalwa1250 g.webp" alt="Assorted Baklawa"></div>
+                    <div class="info-cont"><h3>Assorted Baklawa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1.250 kg Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
                         <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="bakalwa500g.png" alt="Cashew Baklawa Box"></div>
-                    <div class="info-cont"><h3>Cashew Baklawa Box</h3></div>
+                    <div class="img-cont"><img src="bakalwa500g.webp" alt="Assorted Baklawa"></div>
+                    <div class="info-cont"><h3>Assorted Baklawa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 450 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
                         <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="bakalwa300g.png" alt="Walnut Baklawa Box"></div>
-                    <div class="info-cont"><h3>Walnut Baklawa Box</h3></div>
+                    <div class="img-cont"><img src="bakalwa300g.webp" alt="Assorted Baklawa"></div>
+                    <div class="info-cont"><h3>Assorted Baklawa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 250 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
                         <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="bakalwa100g.png" alt="Almond Mabrouma Box"></div>
-                    <div class="info-cont"><h3>Almond Mabrouma Box</h3></div>
+                    <div class="img-cont"><img src="bakalwa100g.webp" alt="Assorted Baklawa"></div>
+                    <div class="info-cont"><h3>Assorted Baklawa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 90 g Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
                         <span class="meta-line"><strong>Shelf Life:</strong> 1 Month (Keep cool, dry & shaded)</span>
@@ -700,7 +772,7 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Authentic Kunafa & Spreads</h2>
             </div>
             <div class="tiled-content">
@@ -764,7 +836,7 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Heritage Sweets & Pastries</h2>
             </div>
             <div class="tiled-content">
@@ -785,7 +857,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="pistachio_harisa.png" alt="Pistachio Harisa"></div>
+                    <div class="img-cont"><img src="pistachio_harisa.webp" alt="Pistachio Harisa"></div>
                     <div class="info-cont"><h3>Pistachio Harisa</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -828,12 +900,12 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Classic Maamoul & Cookies</h2>
             </div>
             <div class="tiled-content">
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="braz.png" alt="Extra Sesame Barazek"></div>
+                    <div class="img-cont"><img src="braz.webp" alt="Extra Sesame Barazek"></div>
                     <div class="info-cont"><h3>Extra Sesame Barazek</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -841,7 +913,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="Pistachio Shortbread ('Ghraybeh).png" alt="Pistachio Ghraybeh"></div>
+                    <div class="img-cont"><img src="Pistachio Shortbread ('Ghraybeh).webp" alt="Pistachio Ghraybeh"></div>
                     <div class="info-cont"><h3>Pistachio Ghraybeh</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 500 g &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -849,7 +921,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="Date Maamoul Extra Pistachio.png" alt="Extra Date Maamoul"></div>
+                    <div class="img-cont"><img src="Date Maamoul Extra Pistachio.webp" alt="Extra Date Maamoul"></div>
                     <div class="info-cont"><h3>Extra Date Maamoul</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -865,7 +937,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="walnut_maamoul.png" alt="Extra Walnut Maamoul"></div>
+                    <div class="img-cont"><img src="walnut_maamoul.webp" alt="Extra Walnut Maamoul"></div>
                     <div class="info-cont"><h3>Extra Walnut Maamoul</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -873,7 +945,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="Premium Extra Barazek  Ghraiba  Date Maamoul.png" alt="Mixed Maamoul & Barazek"></div>
+                    <div class="img-cont"><img src="Premium Extra Barazek  Ghraiba  Date Maamoul.webp" alt="Mixed Maamoul & Barazek"></div>
                     <div class="info-cont"><h3>Mixed Maamoul & Barazek</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 Box &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -892,12 +964,12 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
                 <h2 class="category-header">Coffee & Damascene Delights</h2>
             </div>
             <div class="tiled-content">
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="Product photo 7.png" alt="Damascene Glacé Fruit"></div>
+                    <div class="img-cont"><img src="Product photo 7.webp" alt="Damascene Glacé Fruit"></div>
                     <div class="info-cont"><h3>Damascene Glacé Fruit</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -905,7 +977,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="Product photo.png" alt="Pistachio Syrian Nougat"></div>
+                    <div class="img-cont"><img src="Product photo.webp" alt="Pistachio Syrian Nougat"></div>
                     <div class="info-cont"><h3>Pistachio Syrian Nougat</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -921,7 +993,7 @@
                     </div>
                 </div>
                 <div class="product-tile" onclick="openModal(this)">
-                    <div class="img-cont"><img src="arabic_coffee.png" alt="Special Arabic Coffee"></div>
+                    <div class="img-cont"><img src="arabic_coffee.webp" alt="Special Arabic Coffee"></div>
                     <div class="info-cont"><h3>Kweider Arabic Coffee</h3></div>
                     <div class="meta-horizontal">
                         <span class="meta-line"><strong>Format:</strong> 1 kg &nbsp;•&nbsp; <strong>Allergens:</strong> Gluten, Nuts, Milk</span>
@@ -956,21 +1028,24 @@
     <div class="page-container">
         <div class="page-inner">
             <div class="header-area" style="margin-bottom: 20px;">
-                <img src="imageslogo.png" alt="Kweider Logo" class="tiny-header-logo">
-                <h2 class="category-header">Premium Packaging Excellence</h2>
-                <p style="color: var(--muted-gray); font-size: 11pt; margin-top: 5px;">A glimpse into our luxurious and meticulously crafted emballage designed to preserve quality and elevate the brand.</p>
+                <img src="imageslogo.webp" alt="Kweider Logo" class="tiny-header-logo">
+                <h2 class="category-header">Where Craft Meets Luxury</h2>
+                <p style="color: var(--muted-gray); font-size: 11pt; margin-top: 5px;">A signature collection of bespoke and private‑label packaging, curated for elevated brands.</p>
             </div>
             <div class="packaging-grid">
                 <!-- 12 Packaging Images -->
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_1.webp" alt="Packaging Box 1"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_2.webp" alt="Packaging Box 2"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_3.webp" alt="Packaging Box 3"></div>
+                
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_4.webp" alt="Packaging Box 4"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_5.webp" alt="Packaging Box 5"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_6.webp" alt="Packaging Box 6"></div>
+                
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_7.webp" alt="Packaging Box 7"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_8.webp" alt="Packaging Box 8"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_9.webp" alt="Packaging Box 9"></div>
+                
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_10.webp" alt="Packaging Box 10"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_11.webp" alt="Packaging Box 11"></div>
                 <div class="packaging-tile" onclick="openModal(this)"><img src="packaging_12.webp" alt="Packaging Box 12"></div>
@@ -982,25 +1057,56 @@
         </div>
     </div>
 
-    <!-- ================= PAGE 11: CLOSING PAGE ================= -->
+    <!-- ================= PAGE 11: CLOSING PAGE & INTERACTIVE LINKS ================= -->
     <div class="page-container">
         <div class="cover-page" style="justify-content: center; display: flex; flex-direction: column;">
             <div class="cover-logo-container">
-                <img src="imageslogo.png" alt="Kweider Logo" class="cover-logo">
+                <img src="imageslogo.webp" alt="Kweider Logo" class="cover-logo">
             </div>
             <div class="hero-text-block" style="flex-grow: 1;">
-            <h1 class="hero-title" style="color: #c49a3a;">Partner With Excellence</h1>
-            <div class="hero-subtitle" style="font-size: 13pt; max-width: 85%; margin: 25px auto; text-align: center; color: var(--pure-white);">
-                We view our B2B relationships not merely as transactions, but as strategic partnerships. By choosing Kweider, you are selecting a brand that understands the nuanced demands of luxury hospitality and high-end retail.<br><br>
-                Our exquisitely packaged, artisanal creations are designed to seamlessly complement your high standards and elevate the memorable moments you provide to your distinguished guests. We believe that true luxury lies in the details, from the first glance at our emballage to the final taste.<br><br>
-                <span style="color: var(--copper-gold); font-style: italic;">We look forward to the prospect of curating a bespoke offering tailored exactly to your exacting requirements and building a fruitful, lasting partnership.</span>
+                <h1 class="hero-title" style="color: #c49a3a;">A Partnership Defined by Quality</h1>
+                <div class="hero-subtitle" style="font-size: 13pt; max-width: 85%; margin: 25px auto; text-align: center; color: var(--pure-white);">
+                    We believe true partnerships are crafted with the same care as fine luxury. At Kweider, we collaborate with distinguished hospitality and retail partners who value refinement, heritage, and impeccable presentation. <br><br>
+                    Every piece we create, from the first visual impression to the final tasting moment, is designed to elevate the experiences you deliver to your esteemed guests. We look forward to shaping a bespoke collaboration that reflects your vision and enhances your brand’s signature touch.<br><br>
+                    <span style="color: var(--copper-gold); font-style: italic;">We look forward to the prospect of curating a bespoke offering tailored exactly to your exacting requirements and building a fruitful, lasting partnership.</span>
+                </div>
             </div>
-        </div>
-        <div class="footer" style="width: 100%; border-top: none; justify-content: center; flex-direction: column; gap: 10px; margin-bottom: 20mm;">
-                <h3 style="color: var(--copper-gold); font-size: 16pt; margin: 0;">Contact Our Wholesale Team</h3>
-                <div style="font-size: 14pt; color: var(--pure-white);">info@kweidersweets.co.uk | 0044 7 440 444 500</div>
-                <div style="font-size: 12pt; color: var(--muted-gray);">184-186 High Street, Acton, London, W3 9NH</div>
+            
+            <!-- أزرار التواصل التفاعلية الجديدة -->
+            <div class="links-container">
+                <div class="grid-row">
+                    <a href="https://www.instagram.com/kweideruk" class="link-btn-half" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.facebook.com/KweiderUK" class="link-btn-half" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+
+                <div class="grid-row">
+                    <a href="https://www.tiktok.com/@kweideruk" class="link-btn-half" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i> TikTok
+                    </a>
+                    <a href="https://g.page/r/CflK53yJZHCoEBM" class="link-btn-half" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-map-marker-alt"></i> Google Maps
+                    </a>
+                </div>
+
+                <a href="mailto:info@kweidersweets.co.uk" class="link-btn-full" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-envelope"></i> Email Us
+                </a>
+
+                <a href="https://www.kweidersweets.co.uk" class="link-btn-full" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe"></i> Official Website
+                </a>
+
+                <div class="footer-info">
+                    <a href="https://g.page/r/CflK53yJZHCoEBM" class="footer-address" style="justify-content: center; display: flex;" target="_blank" rel="noopener noreferrer">
+                        📍 184-186 High Street, Acton, London, W3 9NH
+                    </a>
+                </div>
             </div>
+            
         </div>
     </div>
 
